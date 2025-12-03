@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P.Rongsin</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <header>
+          <nav class="navbar">
+             <div class="logo">P.Rongsin</div>
+             <!-- เพิ่มปุ่มแฮมเบอร์เกอร์สำหรับมือถือ -->
+             <div class="hamburger-menu" id="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+             </div>
+                <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="about.html">หน้ารวมผลงาน</a></li>
+                <li><a href="about2.html">ผลงานระดับนานาชาติและประเทศ</a></li>
+                <li><a href="about3.html">ผลงานระดับภูมิภาคและระดับจังหวัด</a></li>
+                <li><a href="about4.html">ผลงานอื่นๆ</a></li>
+    </ul>
+  </nav>
+    </header>
+
+
+    <main class = "main-content">
+
+        <div class = "web-section">
+
+            <h1 class="hua"> ยินดีต้อนรับสู่เว็บไซต์แสดงผลงานของ ภาวิศ โรงสิน </h1>
+
+            <section class="profile-section">
+                <h2 class = "Huakor">สวัสดีครับ</h2>
+                <div class="profile-content">
+                    <img src="images/pro.jpg" class="about-image1">
+
+                    <div class="about-text">
+                <p class="start">
+                    ที่นี่คือศูนย์รวมของความคิด ผลงาน และผลลัพธ์ที่เกิดจากความสนใจในการใช้คอมพิวเตอร์และเทคโนโลยีเพื่อพัฒนาและแก้ปัญหา ผมเชื่อมั่นว่าการเรียนรู้ด้านเทคโนโลยีควรนำไปสู่การประยุกต์ใช้ได้จริง
+
+ขอเชิญคุณสำรวจผลงานต่างๆ ที่แสดงถึงทักษะ ความมุ่งมั่นในการเรียนรู้ และประสบการณ์ที่ผ่านมาของผม เพื่อเป็นข้อมูลประกอบการพิจารณาถึงความสามารถและคุณสมบัติในการเข้าศึกษาต่อ    
+                </p> 
+                    </div>
+                
+                 </div>
+            </section>
+
+<div class="buttons">
+    <a href="about.html" class="btn-hover color-1">ต่อไป</a>
+</div>
+        </div>
+    </main>
+    <footer>
+        <div class = footer-content> 
+            <p>© 2025 Pawis Rongsin. All rights reserved.</p>
+            <a href = "mailto:pawisrongsin@gmail.com">Contact Me</a>
+        </div>
+    </footer>
+
+    <!-- เพิ่ม JavaScript สำหรับเมนูแฮมเบอร์เกอร์ (วางไว้ก่อนปิดแท็ก </body>) -->
+    <script>
+        const hamburgerMenu = document.getElementById('hamburger-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburgerMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburgerMenu.classList.toggle('open'); // เพิ่มคลาส 'open' สำหรับเปลี่ยนไอคอน
+        });
+
+        // ปิดเมนูเมื่อคลิกลิงก์ (สำหรับมือถือ)
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    hamburgerMenu.classList.remove('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

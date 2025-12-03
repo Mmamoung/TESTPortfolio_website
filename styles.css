@@ -1,0 +1,1187 @@
+header {
+    background: #000000;
+    width: 100%;
+    /* height: 40px;  ลบออก เพราะ navbar จะกำหนดความสูงเอง */
+    padding: 0; /* ลบ padding ออกจาก header */
+    position: fixed; /* ทำให้ Navbar อยู่กับที่ด้านบน */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* ให้ Navbar อยู่ด้านบนสุด */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar {
+  background: #000000;
+  padding: 1rem 2rem; /* ปรับ padding ให้เหมาะสม */
+  display: flex;
+  justify-content: flex-end; /* จัดลิงก์ไปทางขวา */
+  align-items: center;
+  color: white;
+  width: 100%; /* ให้ Navbar เต็มความกว้าง */
+  box-sizing: border-box; /* รวม padding ใน width */
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-right: auto; /* ดันโลโก้ไปทางซ้ายสุด */
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* แสดงลิงก์เป็นแถวบน Desktop */
+  gap: 1.5rem;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem; /* ขนาดฟอนต์ลิงก์ */
+  padding: 0 10px; /* เพิ่ม padding ให้ลิงก์ */
+}
+
+.nav-links li a:hover {
+  color: #FFD700;
+}
+
+/* ซ่อน Hamburger Menu บน Desktop */
+.hamburger-menu {
+    display: none;
+}
+
+/* ปรับ padding-top ของ main-content เพื่อหลีกเลี่ยง Navbar ที่ fixed */
+.main-content {
+    flex: 1 0 auto;
+    padding-top: 80px; /* ปรับตามความสูงของ Navbar บน Desktop (ประมาณ 1rem + 1rem + 0.5rem + 0.5rem = 3rem = 48px + 20px = 68px, เผื่อหน่อยเป็น 80px) */
+}
+
+/* Mobile Styles (เมื่อหน้าจอเล็กกว่า 768px) */
+@media (max-width: 768px) {
+    .navbar {
+        justify-content: space-between; /* โลโก้ซ้าย, แฮมเบอร์เกอร์ขวา */
+        padding: 0.8rem 1.2rem; /* ลด padding บนมือถือ */
+    }
+
+    .logo {
+        font-size: 1.6rem; /* ลดขนาดโลโก้บนมือถือ */
+        margin-right: 0; /* ลบ margin-right */
+    }
+
+    .nav-links {
+        display: none; /* ซ่อนเมนูลิงก์บนมือถือโดยค่าเริ่มต้น */
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* วางเมนูไว้ใต้ Navbar */
+        left: 0;
+        width: 100%;
+        background-color: #000; /* พื้นหลังเมนู */
+        z-index: 999;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-links.active { /* แสดงเมนูเมื่อมีคลาส 'active' */
+        display: flex;
+    }
+
+    .nav-links li {
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* เส้นแบ่งเมนู */
+    }
+
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links li a {
+        padding: 15px 20px;
+        font-size: 1rem;
+    }
+
+    /* แสดง Hamburger Menu บนมือถือ */
+    .hamburger-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .hamburger-menu .bar {
+        width: 100%;
+        height: 3px;
+        background-color: #fff;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+
+    /* เปลี่ยนไอคอนแฮมเบอร์เกอร์เป็นกากบาทเมื่อเปิดเมนู */
+    .hamburger-menu.open .bar:nth-child(1) {
+        transform: translateY(11px) rotate(45deg);
+    }
+    .hamburger-menu.open .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger-menu.open .bar:nth-child(3) {
+        transform: translateY(-11px) rotate(-45deg);
+    }
+
+    /* ปรับเนื้อหาหลักสำหรับมือถือ */
+    .main-content {
+        padding-top: 65px; /* ปรับตามความสูงของ Navbar บนมือถือ */
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .web-section {
+        width: 95%; /* ให้เต็มความกว้างมากขึ้นบนมือถือ */
+        padding: 10px;
+    }
+
+    .hua {
+        font-size: 1.8rem; /* ลดขนาดหัวข้อ */
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .profile-section {
+        width: 95%; /* ให้เต็มความกว้างมากขึ้นบนมือถือ */
+        padding: 15px;
+    }
+
+    .profile-content {
+        flex-direction: column; /* จัดรูปภาพและข้อความซ้อนกันในแนวตั้ง */
+        gap: 20px;
+        padding: 15px;
+    }
+
+    .about-image1 {
+        width: 100%; /* ให้รูปภาพเต็มความกว้าง */
+        max-width: 300px; /* จำกัดขนาดสูงสุด */
+        height: auto;
+        margin: 0 auto; /* จัดรูปภาพให้อยู่กึ่งกลาง */
+    }
+
+    .start {
+        text-indent: 0; /* ลบการเยื้องบรรทัดแรกบนมือถือ */
+        text-align: left; /* จัดชิดซ้ายเพื่อความอ่านง่าย */
+        font-size: 1.1rem; /* ลดขนาดฟอนต์ */
+    }
+
+    .buttons {
+        position: static; /* ลบการจัดตำแหน่ง absolute ถ้ามี */
+        margin-top: 20px;
+        text-align: center;
+    }
+}
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    font-family: Sriracha, sans-serif;
+    line-height: 1.6;
+    background-color: rgb(70, 115, 206);
+    /* background-image: url(images/PIC2.png); */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.web-section {
+    width: 75%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+}
+.hua {
+    text-align: center;
+}
+.profile-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+.Huakor {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 3.8rem;
+    margin: 0;
+}
+.start {
+    color: blanchedalmond;
+    text-align: left;
+    padding-top: 15px;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.about-image1 {
+    width: 300px;
+    height: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+.profile-content {
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    
+}
+
+.buttons {
+    text-align: center;
+    margin: 0;
+}
+
+.btn-hover {
+    display: inline-flex;            
+    align-items: center;             
+    justify-content: center;         
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align: center;
+    text-decoration: none;           
+    background-size: 300% 100%;
+
+    border-radius: 50px;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+    background-position: 100% 0;   
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    text-decoration: none;           
+}
+
+.btn-hover:focus {
+    outline: none;
+}
+
+.btn-hover.color-1 {
+    background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+}
+.main-content {
+    flex: 1 0 auto;
+}
+
+footer {
+    background: #000000;
+    color: rgb(74, 70, 70);
+    text-align: center;
+    padding: 5px 0;
+    width: 100%;
+    position: relative;
+    z-index: 50;
+    flex-shrink: 0;
+}
+.footer-content {
+    color: white;
+    text-align: center;
+    font-size: smaller;
+    margin: 0;
+}
+/* ---------- CSS-only page entry animation ---------- */
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ให้ main-content โผล่สวยๆ เมื่อหน้าโหลด */
+.main-content {
+  opacity: 0;                     /* ถ้าไม่มี animation จะกระพริบสั้นๆ */
+  animation: pageFadeIn 420ms ease forwards;
+  /* ถ้าต้องการหน่วงเวลา ให้ใช้ animation-delay: 120ms; */
+}
+
+/* ปิด animation สำหรับผู้ที่เลือก reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .main-content { animation: none; opacity: 1; transform: none; }
+}
+/* หน้า about */
+/* ************************************************************************************************************** */
+.poomjai-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+.Huakor2 {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 3.8rem;
+    margin: 0;
+}
+.Huakor2-1 {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 1.3rem;
+    margin: 0;
+}
+/* important *********************************************************************************************************************/
+.images-row {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.about-image2 {
+    display: block;
+    width: 100%;           
+    max-width: 360px;     
+    aspect-ratio: 4 / 3;  
+    object-fit: cover;    
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.about-image3 {
+   display: block;
+    width: 100%;           
+    max-width: 360px;     
+    aspect-ratio: 4 / 3;  
+    object-fit: cover;    
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.poomjai-content {
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+.poomjai-content .about-text {
+    max-width: 980px;
+    color: blanchedalmond;
+    text-align: left;
+    line-height: 1.6;
+    font-size: 1.25rem;
+}
+/* ย่อหน้าแบบเรียงความ ****************************************************************************************************************/
+.about-text p,
+.poomjai-content .about-text p,
+.park-content .about-text p,
+.jung-content .about-text p {
+    margin: 0 0 1.25rem 0;   /* เว้นระยะด้านล่างระหว่างย่อหน้า */
+    line-height: 1.7;        /* ระยะบรรทัดเพื่อความอ่านง่าย */
+    text-indent: 2em;        /* เยื้องบรรทัดแรกของย่อหน้า */
+    text-align: justify;     /* จัดชิดซ้าย-ขวา (เอาออกถ้าไม่ต้องการ) */
+}
+/* News cards (converted from Stylus) - replaced with responsive grid ********************************************************************/
+.news {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  padding: 0;
+  justify-items: center;
+  align-items: start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* each card: grid handles spacing so remove external margins */
+.news .article {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 350px;   /* cap card width so 3 fit comfortably */
+  height: 235px;
+  border-radius: 8px;
+  background: transparent;
+}
+
+.news .article img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .2s ease, filter .2s ease;
+}
+
+/* figcaption behaves like an absolutely positioned overlay (.abs) */
+.news .article figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  font-size: 14px;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(51, 51, 51, 0.3);
+  padding: 40px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  background: rgba(6, 18, 53, 0.6);
+  opacity: 0;
+  transform: scale(1.15);
+  transition: opacity .2s ease, transform .2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* heading inside overlay */
+.news .article figcaption h3 {
+  color: #3792e3;
+  font-size: 20px;
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+
+/* hover / focus / active to support some touch devices */
+.news .article:hover img,
+.news .article:focus img,
+.news .article:active img {
+  filter: blur(3px);
+  transform: scale(.97);
+}
+
+.news .article:hover figcaption,
+.news .article:focus figcaption,
+.news .article:active figcaption {
+  opacity: 1;
+  transform: none;
+}
+
+/* make the whole card clickable */
+.card-link {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* keyboard focus visible */
+.card-link:focus-visible {
+  outline: 3px solid rgba(55,146,227,0.22);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+/* ensure hover/focus effects go through the link */
+.card-link:hover img,
+.card-link:focus img {
+  filter: blur(3px);
+  transform: scale(.97);
+}
+.card-link:hover figcaption,
+.card-link:focus figcaption {
+  opacity: 1;
+  transform: none;
+}
+
+/* accessibility: allow keyboard focus */
+.news .article { outline: none; }
+.news .article:focus { box-shadow: 0 0 0 3px rgba(55,146,227,0.18); }
+
+/* Responsive tweak */
+@media (max-width: 600px) {
+  .news { grid-template-columns: 1fr; gap: 16px; padding: 16px 0; }
+  .news .article { height: 220px; max-width: 100%; }
+}
+@media (min-width: 601px) and (max-width: 900px) {
+  .news { grid-template-columns: repeat(2, 1fr); }
+}
+.awardselect-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+.awardselect-content {
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+.buttons2 {
+    margin-left: 30px;
+}
+.Huakor3 {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 3.8rem;
+    margin: 0;
+}
+/* หน้า about2 */
+/* ************************************************************************************************************** */
+.awardlevel {
+    text-align: center;
+    background-color: sandybrown;
+    margin: 0;
+    padding: 0;
+}
+.awardlevel-content {
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+.International-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 100px;
+}
+.Huakor4 {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.about-image4 {
+    width: 300px;
+    height: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+.International-content {
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 70px;
+}
+.country-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+.Huakor5 {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.about-image5 {
+    width: 300px;
+    height: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+.country-content {
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 70px;
+}
+.country2-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.Huakor6 {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.about-image6 {
+    display: block;
+    width: 281px;           
+    height: 397px;     
+    object-fit: cover;    
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.country2-content {
+   color: blanchedalmond;
+    display: flex;
+    flex-direction: column; /* เปลี่ยนจาก row เป็น column */
+    align-items: center;    /* จัดกึ่งกลางในแนวนอน */
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 70px;
+}
+/* หน้า about3 */
+/* ************************************************************************************************************** */
+.park-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 100px;
+}
+.Huakor7 {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.about-image7 {
+    display: block;
+    width: 100%;           
+    max-width: 300px;     
+    aspect-ratio: 4 / 3;  
+    object-fit: cover;    
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    margin-bottom: 20px;
+}
+.about-image7-1 {
+   display: block;
+    width: 100%;           
+    max-width: 300px;     
+    aspect-ratio: 4 / 3;  
+    object-fit: cover;    
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    margin-bottom: 20px;
+}
+.park-content {
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 70px;
+}
+.jung-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 40px;
+    margin-top: 50px;
+}
+.Huakor8 {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.about-image8 {
+    width: 300px;
+    height: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+.jung-content {
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+.jung2-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.Huakor9 {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.about-image9 {
+    width: 300px;
+    height: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+.jung2-content {
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 70px;
+}
+/* all pummmmmmmmmmmmmmmmmmmmmmmmmmmm .......................................................................................*/
+
+.buttons1 {
+    text-align: center;
+    margin: 0;                                 
+    position: absolute;
+    left: 50%;
+    bottom: 10px;         /* ระยะจากก้นกรอบ */
+    transform: translateX(-50%);
+    text-align: center;
+    width: auto;
+}
+/* หน้า about4 */
+/* ************************************************************************************************************** */
+.awardselect-section2 {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 80px;
+}
+/* หน้า about5 */
+/* ************************************************************************************************************** */
+.English-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 100px;
+}
+.Huakor10 {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.about-image10 {
+    width: 300px;
+    height: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+.English-content {
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 70px;
+}
+.English2-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.Huakor11 {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.about-image11 {
+    width: 300px;
+    height: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+.English2-content {
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 70px;
+}
+.English3-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.Huakor11-1 {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.about-image11-1 {
+    width: 300px;
+    height: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+.English3-content {
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 70px;
+}
+.about-texteng {
+    font-size: 1.4rem;
+}
+/* หน้า about6 */
+/* ************************************************************************************************************** */
+.pattana-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 100px;
+}
+.Huakor12 {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.about-image12 {
+    width: 300px;
+    height: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+.pattana-content {
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 70px;
+}
+.pattana2-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.Huakor13 {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.about-image13 {
+    width: 300px;
+    height: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+.pattana2-content {
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 70px;
+}
+.pattana3-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.Huakor14 {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.about-image14 {
+    width: 300px;
+    height: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+.pattana3-content {
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 70px;
+}
+.pattana4-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.Huakor15 {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.about-image15 {
+    width: 300px;
+    height: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+.pattana4-content {
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 70px;
+}
+.pattana5-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.Huakor16 {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.about-image16 {
+    width: 300px;
+    height: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+.pattana5-content {
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 70px;
+}
+/* หน้า about7 */
+/* ************************************************************************************************************** */
+.jit-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 100px;
+}
+.Huakor17 {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.about-image17 {
+    width: 300px;
+    height: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+.jit-content {
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 70px;
+}
+.jit2-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.Huakor18 {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.about-image18 {
+    width: 300px;
+    height: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+.jit2-content {
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 70px;
+}
+.jit3-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.Huakor19 {
+    color: blanchedalmond;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.about-image19 {
+    width: 300px;
+    height: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+.jit3-content {
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 70px;
+}
